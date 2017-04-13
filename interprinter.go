@@ -42,10 +42,10 @@ func doRun(env map[string]interface{}, v []interface{}) interface{} {
 		return eval(env, v[1]).(float64) + eval(env, v[2]).(float64)
 	case "-":
 		return eval(env, v[1]).(float64) - eval(env, v[2]).(float64)
+	case "*":
+		return eval(env, v[1]).(float64) * eval(env, v[2]).(float64)
 	case "/":
 		return eval(env, v[1]).(float64) / eval(env, v[2]).(float64)
-	case "*":
-		panic("Todo")
 	default:
 		panic("Unknown operation: " + fmt.Sprint(v))
 	}
@@ -59,7 +59,7 @@ func main() {
   ["set", "sum", 10],
   ["until", ["=", ["get", "i"], 0], [
     "step",
-    ["set", "sum", ["/", ["get", "sum"], ["get", "i"]]],
+    ["set", "sum", ["*", ["get", "sum"], ["get", "i"]]],
     ["set", "i", ["-", ["get", "i"], 1]]
   ]],
   ["get", "sum"]
