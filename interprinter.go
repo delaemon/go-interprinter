@@ -41,7 +41,7 @@ func doRun(env map[string]interface{}, v []interface{}) interface{} {
 	case "+":
 		return eval(env, v[1]).(float64) + eval(env, v[2]).(float64)
 	case "-":
-		panic("Todo")
+		return eval(env, v[1]).(float64) - eval(env, v[2]).(float64)
 	case "/":
 		panic("Todo")
 	case "*":
@@ -60,7 +60,7 @@ func main() {
   ["until", ["=", ["get", "i"], 0], [
     "step",
     ["set", "sum", ["+", ["get", "sum"], ["get", "i"]]],
-    ["set", "i", ["+", ["get", "i"], -1]]
+    ["set", "i", ["-", ["get", "i"], 1]]
   ]],
   ["get", "sum"]
 ]`
